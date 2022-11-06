@@ -11,7 +11,7 @@ export class ProfileService {
     profileDetails.scrapper = "instagramProfile";
 
     const {account, scrapper} = profileDetails
-   const {statusCode, data} = await curly.post(process.env.POSTURL, {
+   const {data} = await curly.post(process.env.POSTURL, {
     postFields: querystring.stringify({account: account,scraper: scrapper}),
     httpHeader: [
         'Authorization:Basic Um9iYnlGcmFua1Rlc3Q6aTBEa0V0NEdNVDEzTGpPWlVTY09MTW1UbA',
