@@ -1,4 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { ProfileGetDto } from './dto/profile-get-dto';
+import { ProfileService } from './profile.service';
 
-@Controller('profile')
-export class ProfileController {}
+@Controller('api/profile')
+export class ProfileController {
+    constructor(private readonly profileService: ProfileService){
+
+    }
+    @Post()
+    async profile(@Body() profileData:ProfileGetDto):Promise<any>{
+
+        return await this.profileService.scrapeProfile(profileData);
+
+    }
+}
