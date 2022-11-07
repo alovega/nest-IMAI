@@ -19,7 +19,7 @@ export class ProfileService {
     ]
    });
 
-    await setTimeout(15000);
+    await setTimeout(20000);
     const profile_scrap = await this.getProfileData(data.responseId, process.env.GETURL, scrapper);
     return profile_scrap 
    }
@@ -32,6 +32,17 @@ export class ProfileService {
                 'Accept: application/json',
             ],
         });
+        if(statusCode === 202){
+            const {statusCode, data} = await curly(url +'responseId='+responseId + '&' +'scraper=instagramProfile' ,{
+                customRequest: 'GET',
+                httpHeader: [
+                    'Authorization:Basic Um9iYnlGcmFua1Rlc3Q6aTBEa0V0NEdNVDEzTGpPWlVTY09MTW1UbA',
+                    'Accept: application/json',
+                ],
+            }); 
+
+            return  {statusCode, data}
+        }
         return  {statusCode, data}
    }
 }
