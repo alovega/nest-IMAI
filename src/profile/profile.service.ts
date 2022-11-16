@@ -19,7 +19,7 @@ export class ProfileService {
     ]
    });
 
-    await setTimeout(15000);
+    await setTimeout(40000);
     const profile_scrap = await this.getProfileData(data.responseId, process.env.GETURL, scrapper);
     return profile_scrap 
    }
