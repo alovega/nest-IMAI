@@ -2,7 +2,7 @@
 # the necessary build tools required for dependencies with native
 # First Stage: to install and build dependencies
 FROM node:16.3.0  AS development
-WORKDIR /app
+WORKDIR /app/scrapper
 COPY ./package.json ./
 RUN npm install
 COPY . .
@@ -12,5 +12,5 @@ RUN npm run build
 FROM node:16.3.0-alpine 
 WORKDIR /app
 EXPOSE 4000
-COPY --from=development /app ./
+COPY --from=development /app/scrapper ./
 CMD [ "npm", "run", "start:prod" ]
